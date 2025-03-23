@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Technology Selection</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* General Styles */
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+        }
+
+        /* Navbar */
+        .navbar {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 80px;
+            background-color: #333;
+            color: white;
+            padding: 0 10px;
+        }
+
+        .navbar-left {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .logo {
+            font-size: 80px;
+            font-weight: bold;
+            color: white;
+        }
+
+        .logo span {
+            color: #a435f0;
+        }
+
+        .main {
+            text-decoration: none;
+        }
+
+        /* Page Header */
+        .page-header {
+            text-align: center;
+            padding: 20px 10px;
+            background-color: #fff;
+        }
+
+        .page-header h1 {
+            font-size: 2rem;
+            margin: 0;
+        }
+
+        .page-header p {
+            font-size: 1rem;
+            color: #666;
+        }
+
+        /* Button Container */
+        .button-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 10px;
+            padding: 20px;
+        }
+
+        .button {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 10px;
+            background-color: #000000;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+            text-align: center;
+        }
+
+        .button:hover {
+            background-color: #0056b3;
+        }
+
+        /* Media Queries for Mobile */
+        @media (max-width: 768px) {
+            .navbar {
+                height: 100px;
+            }
+
+            .logo {
+                font-size: 20px;
+            }
+
+            .page-header h1 {
+                font-size: 10rem;
+            }
+
+            .page-header p {
+                font-size: 0.9rem;
+            }
+
+            .button-container {
+                grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+                padding: 10px;
+            }
+
+            .button {
+                font-size: 15px;
+                padding: 8px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .navbar {
+                height: 65px;
+            }
+
+            .logo {
+                font-size: 30px;
+            }
+
+            .page-header h1 {
+                font-size: 3rem;
+            }
+
+            .page-header p {
+                font-size: 1.3rem;
+            }
+
+            .button-container {
+                grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+                gap: 8px;
+                padding: 10px;
+                padding-top: 0%;
+            }
+
+            .button {
+                font-size: 15px;
+                padding: 4px;
+            }
+        }
+        /* Button Container */
+.button-container {
+    display: flex;
+    flex-wrap: wrap; /* Allow buttons to wrap to the next line */
+    gap: 10px; /* Space between buttons */
+    padding: 20px;
+}
+
+/* Button Styling */
+.button {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px; /* Space between icon and text */
+    padding: 10px 20px;
+    background-color: #000000;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    text-decoration: none; /* Remove underline */
+}
+
+.button:hover {
+    background-color: #882bc9;
+}
+
+/* Remove underline from anchor tags */
+.button-container a {
+    text-decoration: none;
+}
+
+/* Icon Styling */
+.button i {
+    font-size: 18px;
+}
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-left">
+            <a href="home.html" class="main">
+                <h2 class="logo"><span>S</span>killSphere</h2>
+            </a>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <header class="page-header">
+        <h1>Development</h1>
+        <p>Choose the course below.</p>
+    </header>
+
+    <!-- Button Container -->
+    <div class="button-container">
+        <!-- Buttons with icons -->
+       
+        <a href="css.html" class="css"><button class="button"><i class="fab fa-css3-alt"></i>css</button></a>
+        <a href="html.html" class="html"><button class="button"><i class="fab fa-html5"></i>html</button></a>
+       <a href="bootstrap.html" class="bootstrap"> <button class="button"><i class="fab fa-bootstrap"></i>bootstrap</button></a>
+        <a href="developmentools.html" class="development-tools" ><button class="button"><i class="fas fa-tools"></i>development-tools</button></a>
+        <a href="django.html" class="django"><button class="button"><i class="fab fa-python"></i>django</button></a>
+        <a href="ethical-hacking.html" class="ethical-hacking"><button class="button"><i class="fas fa-user-secret"></i>ethical-hacking</button></a>
+        <a href="game-development.html" class="game-development"><button class="button"><i class="fas fa-gamepad"></i>game-development</button></a>
+        <a href="git.html" class="git"><button class="button">git</button></a>
+         <a href="java.html" class="java" ><button class="button"><i class="fab fa-java"></i>java</button></a>
+         <a href="javascript.html" class="javascript" > <button class="button"><i class="fab fa-js"></i>javascript</button></a>
+        <a href="jquery.html" class="jquery" ><button class="button"><i class="fab fa-js-square"></i>jquery</button></a>
+        <a href="ml.html" class="ml"><button class="button"><i class="fas fa-brain"></i>machine-learning</button></a>
+        <a href="mysql.html" class="mysql"><button class="button"><i class="fas fa-database"></i>mysql</button></a>
+       <a href="php.html" class="php"> <button class="button"><i class="fab fa-php"></i>php</button></a>
+        
+        <a href="python.html" class="python>"><button class="button"><i class="fab fa-python"></i>python</button></a>
+        
+        <a href="r-programming.html" class="r-programming"><button class="button"><i class="fas fa-chart-line"></i>r-programming</button></a>
+        <a href="react-redux.html" class="react-redux"><button class="button"><i class="fab fa-react"></i>react-redux</button></a>
+        
+        <a href="seo.html" class="seo" ><button class="button"><i class="fas fa-search"></i>seo</button></a>
+        <a href="software.html" class="software" ><button class="button"><i class="fas fa-laptop-code"></i>software</button></a>
+        <a href="sql.html" class="sql"><button class="button"><i class="fas fa-database"></i>sql</button></a>
+       
+        <a href="ux.html" class="ux"><button class="button"><i class="fas fa-palette"></i>ux</button></a>
+        <a href="web-development-other.html" class="web-development-other"><button class="button"><i class="fas fa-globe"></i>web-development-other</button></a>
+        <a href="wordpress.html" class="wordpress"><button class="button"><i class="fab fa-wordpress"></i>wordpress</button></a>
+        
+        <a href="programming-other.html" class="programming-other"> <button class="button"><i class="fas fa-code"></i>programming-other</button></a>
+    </div>
+</body>
+</html>
