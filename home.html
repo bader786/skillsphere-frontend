@@ -6,6 +6,7 @@
     <title>Udemy Navbar Clone</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="styles.css">
+    <script src="https://sdk.cashfree.com/js/v3/payment.js"></script>
     <style>
         /* Reset */
         * {
@@ -386,6 +387,15 @@
             </button>
         </div>
     </nav>
+
+     <!-- Add Payment Modal -->
+     <div id="paymentModal" style="display:none; position:fixed; top:50%; left:50%; transform:translate(-50%,-50%); background:white; padding:20px; border-radius:8px; box-shadow:0 0 10px rgba(0,0,0,0.1); z-index:1001;">
+        <h3>Enter Email for Payment</h3>
+        <input type="email" id="paymentEmail" placeholder="your@email.com" style="width:100%; padding:8px; margin:10px 0;">
+        <button onclick="initiatePayment()" style="background:#a435f0; color:white; border:none; padding:8px 16px; border-radius:4px; cursor:pointer;">Proceed</button>
+        <button onclick="document.getElementById('paymentModal').style.display='none'" style="background:#ccc; margin-left:10px;">Cancel</button>
+    </div>
+
     <button class="feedback-button" onclick="sendFeedback()">Send Feedback</button>
 
     <!-- Course Grid Section -->
@@ -393,7 +403,9 @@
         <!-- Course Card 1 -->
         <div class="course-card" 
         data-title="Windows Command Mastery for Ethical Hackers"
-        data-course-id="web-dev-001"> <!-- Added unique course ID -->
+        data-course-id="web-dev-001"
+        data-coupon="CDAA8373DB685ACBB378"
+        data-amount="100">
         <a href="https://www.udemy.com/course/windows-command-mastery-for-ethical-hackers/?" class="courses" target="_blank"><img src="coursepic/course 1.jpeg" alt="Web Development Bootcamp Course"> <!-- Improved image path and alt text -->
        <div class="course-card-content">
            <h3>Windows Command Mastery for Ethical Hackers</h3>
@@ -408,7 +420,7 @@
            </div>
            <div class="price">₹100</div></a>
            <div class="buttons">
-            <form><script src="https://checkout.razorpay.com/v1/payment-button.js" data-payment_button_id="pl_QAGRc6PRm08VqB" async> </script> </form>
+            <button class="buy-now">Buy Now</button>
                <button class="wishlist" 
                onclick="addToWishlist('web-dev-001', 'Web Development Bootcamp')">
                    <i class="fas fa-heart"></i>
@@ -591,12 +603,58 @@
         <!-- Add more course cards as needed -->
     </div>
 
+
+   
     <script>
         // Check login status
         if (!localStorage.getItem('token')) {
             alert('Please login first');
             window.location.href = 'index.html';
         }
+
+
+         // Add Cashfree payment logic
+         let currentCourse = null;
+
+document.querySelectorAll('.buy-now').forEach(button => {
+    button.addEventListener('click', function() {
+        const card = this.closest('.course-card');
+        currentCourse = {
+            id: card.dataset.courseId,
+            amount: card.dataset.amount,
+            coupon: card.dataset.coupon,
+            title: card.dataset.title
+        };
+        document.getElementById('paymentModal').style.display = 'block';
+    });
+});
+
+async function initiatePayment() {
+    const email = document.getElementById('paymentEmail').value;
+    if (!email) return alert('Please enter email');
+    
+    try {
+        const response = await fetch('/createOrder', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${localStorage.getItem('token')}`
+            },
+            body: JSON.stringify({
+                ...currentCourse,
+                email: email
+            })
+        });
+
+        const { paymentSessionId } = await response.json();
+        const cashfree = new Cashfree(paymentSessionId);
+        cashfree.redirect();
+        
+    } catch (error) {
+        console.error('Payment error:', error);
+        alert('Payment initialization failed');
+    }
+}
     
         document.addEventListener("DOMContentLoaded", function () {
             const exploreBtn = document.querySelector(".explore-btn");
@@ -691,6 +749,8 @@ async function addToWishlist(courseId, title) {
             const body = `I would like to request the following course: \n\nCourse Name: \nReason: `;
             window.location.href = `mailto:${email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
         }
+
+      
     </script>
 </body>
 </html>
